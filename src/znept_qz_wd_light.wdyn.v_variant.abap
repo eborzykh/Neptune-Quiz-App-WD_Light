@@ -288,12 +288,17 @@ METHOD show_question.
 
     IF lines( lt_variants ) = 1.
       ls_questions-ui_type_vis = if_wdl_core=>visibility_visible.
+      ls_questions-ui_suggestion = 'Type the correct answer.'.
     ELSE.
       ls_questions-ui_select_vis = if_wdl_core=>visibility_visible.
       IF lv_correct = 1.
         ls_questions-ui_radio_vis = if_wdl_core=>visibility_visible.
+        ls_questions-ui_suggestion = 'Choose the correct answer.'.
       ELSE.
         ls_questions-ui_check_vis = if_wdl_core=>visibility_visible.
+        ls_questions-ui_suggestion = lv_correct.
+        CONDENSE ls_questions-ui_suggestion.
+        CONCATENATE 'There are' ls_questions-ui_suggestion 'correct answers.' INTO ls_questions-ui_suggestion SEPARATED BY space.
       ENDIF.
     ENDIF.
 
