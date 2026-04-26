@@ -26,6 +26,8 @@ METHOD handlein.
       et_api_question = lt_api_question
       et_api_variant  = lt_api_variant.
 
+  SORT lt_api_question BY progress.
+
   LOOP AT lt_api_question ASSIGNING FIELD-SYMBOL(<fs_api_question>).
     APPEND INITIAL LINE TO wd_this->gt_db_questions ASSIGNING FIELD-SYMBOL(<fs_db_questions>).
     MOVE-CORRESPONDING <fs_api_question> TO <fs_db_questions>.
